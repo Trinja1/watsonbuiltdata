@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Watson Built Data Solutions — Trina Watson</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f1f3d'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' fill='%23c9973a' font-family='Georgia,serif' font-size='14' font-weight='bold'%3EWB%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -52,8 +53,9 @@ nav {
 
 .nav-brand {
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
 .nav-brand-name {
@@ -1020,9 +1022,27 @@ footer {
   .hero-stats { display: none; }
 }
 
+.nav-mobile-cta {
+  display: none;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: 9px 18px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-mobile-cta:hover { background: var(--gold-light); }
+
 @media (max-width: 768px) {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
+  .nav-mobile-cta { display: inline-flex; }
   section { padding: 60px 24px; }
   .hero { padding: 100px 24px 60px; }
   .services-grid { grid-template-columns: 1fr; }
@@ -1038,18 +1058,25 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">
-    <div class="nav-brand-name">Watson Built</div>
-    <div class="nav-brand-tag">Data Solutions</div>
-  </div>
+  <a href="#home" class="nav-brand" style="text-decoration:none;">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+      <rect width="38" height="38" rx="7" fill="#c9973a"/>
+      <text x="50%" y="54%" dominant-baseline="central" text-anchor="middle" fill="#0f1f3d" font-family="Georgia,serif" font-size="15" font-weight="bold">WB</text>
+    </svg>
+    <div>
+      <div class="nav-brand-name">Watson Built</div>
+      <div class="nav-brand-tag">Data Solutions</div>
+    </div>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#portfolio">Work</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#process">Process</a></li>
-    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    <li><a href="#contact-form-wrap" class="nav-cta">Hire Me</a></li>
   </ul>
+  <a href="#contact-form-wrap" class="nav-mobile-cta">Hire Me</a>
 </nav>
 
 <!-- HERO -->
@@ -1062,7 +1089,7 @@ footer {
     <p class="hero-desc">Nearly 20 years of turning broken data processes into reliable infrastructure. SQL pipelines, Tableau dashboards, automated reporting systems — built from scratch, built to last.</p>
     <div class="hero-actions">
       <a href="#portfolio" class="btn-gold">See My Work →</a>
-      <a href="#contact" class="btn-outline">Start a Project</a>
+      <a href="#contact-form-wrap" class="btn-outline">Start a Project</a>
     </div>
   </div>
   <div class="hero-stats">
@@ -1365,7 +1392,7 @@ footer {
   </div>
 
   <div class="contact-right fade-up">
-    <div class="contact-form" id="contact-form-wrap">
+    <div class="contact-form" id="contact-form-wrap" style="scroll-margin-top: 90px;">
       <div class="form-title">Start a Project</div>
       <div class="form-row">
         <div class="form-group">
@@ -1464,6 +1491,17 @@ function submitForm() {
   // Show success message
   document.getElementById('contact-form-wrap').style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
+
+  // Reset form and show it again after 5 seconds
+  setTimeout(() => {
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-org').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-service').value = '';
+    document.getElementById('f-message').value = '';
+    document.getElementById('form-success').style.display = 'none';
+    document.getElementById('contact-form-wrap').style.display = 'block';
+  }, 5000);
 }
 
 // ── SMOOTH ACTIVE NAV ──
